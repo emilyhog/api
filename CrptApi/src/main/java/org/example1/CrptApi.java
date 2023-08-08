@@ -46,7 +46,7 @@ public class CrptApi {
         executorService.submit(() -> {
             try {
                 signDocument(document, signature);
-                sendRequestToAPI(document, signature); // Make a request to the mock API
+                sendRequestToAPI(document, signature); 
             } catch (Exception e) {
                 e.printStackTrace();
             } finally {
