@@ -42,11 +42,11 @@ public class CrptApi {
             System.out.println("Request limit reached. Waiting for the next interval.");
             return;
         }
-
+        incrementRequestCount();
         executorService.submit(() -> {
             try {
                 signDocument(document, signature);
-                sendRequestToAPI(document, signature); 
+                sendRequestToAPI(document, signature);
             } catch (Exception e) {
                 e.printStackTrace();
             } finally {
@@ -122,7 +122,7 @@ public class CrptApi {
     }
 
     public static void main(String[] args) {
-        int requestLimit = 10;
+        int requestLimit = 50;
         TimeUnit timeUnit = TimeUnit.SECONDS;
         CrptApi crptApi = new CrptApi(timeUnit, requestLimit);
         crptApi.startScheduler();
