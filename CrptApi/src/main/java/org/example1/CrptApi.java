@@ -30,7 +30,9 @@ public class CrptApi {
         this.requestLimit = requestLimit;
     }
     public void startScheduler() {
-        scheduler.scheduleAtFixedRate(this::resetRequestCount, 0, 1, timeUnit);
+        long initialDelay = 0;
+        long interval = timeUnit.toMillis(1);
+        scheduler.scheduleAtFixedRate(this::resetRequestCount, initialDelay, interval, timeUnit);
     }
     private void resetRequestCount() {
         requestCount.set(0);
